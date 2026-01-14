@@ -1,7 +1,3 @@
-data "aws_glue_job" "s3_copy_job" {
-  name = var.glue_job_name
-}
-
 resource "aws_cloudwatch_event_rule" "s3_object_created" {
   name = "jackball-trigger-glue-on-s3-upload"
 
@@ -18,7 +14,7 @@ resource "aws_cloudwatch_event_rule" "s3_object_created" {
 
 resource "aws_cloudwatch_event_target" "trigger_glue_job" {
   rule = aws_cloudwatch_event_rule.s3_object_created.name
-  arn      = data.aws_glue_job.s3_copy_job.arn
+  arn  = aws_glue_job.s3_copy.arn
   role_arn = aws_iam_role.glue_role.arn
 
   input_transformer {
