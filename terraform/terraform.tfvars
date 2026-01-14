@@ -1,4 +1,6 @@
 aws_region         = "eu-west-2"
-source_bucket      = "jackball-bucket/inbox"
-destination_bucket = "jackball-bucket/completed"
+source_bucket      = "jackball-bucket"
+source_bucket_prefix = "inbox"
+destination_bucket = "jackball-bucket"
+destination_bucket_prefix = "completed"
 glue_job_name      = "jackball-s3-copy-job"

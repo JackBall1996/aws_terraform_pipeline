@@ -27,7 +27,9 @@ resource "aws_cloudwatch_event_target" "trigger_glue_job" {
 {
   "--SOURCE_BUCKET": "<bucket>",
   "--SOURCE_KEY": "<key>",
-  "--DEST_BUCKET": "${var.destination_bucket}"
+  "--SOURCE_PREFIX": "${var.source_bucket_prefix}",
+  "--DEST_BUCKET": "${var.destination_bucket}",
+  "--DEST_PREFIX": "${var.destination_bucket_prefix}"
 }
 EOF
   }
