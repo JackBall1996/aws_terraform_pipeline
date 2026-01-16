@@ -45,3 +45,33 @@ resource "aws_iam_role_policy" "glue_policy" {
     ]
   })
 }
+
+resource "aws_iam_role" "eventbridge_invoke_glue_role" {
+  name = "${var.name_prefix}-eventbridge-glue-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Effect = "Allow"
+      Principal = {
+        Service = "events.amazonaws.com"
+      }
+      Action = "sts:AssumeRole"
+    }]
+  })
+}
+
+resource "aws_iam_role_policy" "eventbridge_invoke_glue_policy" {
+  role = aws_iam_role.eventbridge_invoke_glue_role.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Effect = "Allow"
+      Action = [
+        "glue:StartWorkflowRun"
+      ]
+      Resource = aws_glue_workflow.s3_copy_workflow.arn
+    }]
+  })
+}

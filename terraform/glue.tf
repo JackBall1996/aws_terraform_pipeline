@@ -22,5 +22,9 @@ resource "aws_glue_job" "s3_copy" {
     "--enable-continuous-cloudwatch-log" = "true"
     "--enable-metrics"                   = "true"
     "--job-language"                     = "python"
+
+    "--SOURCE_BUCKET" = var.source_bucket
+    "--DEST_BUCKET"   = var.destination_bucket
+    "--SOURCE_PREFIX" = var.source_prefix
   }
 }

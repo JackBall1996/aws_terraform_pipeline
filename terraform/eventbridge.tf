@@ -12,25 +12,9 @@ resource "aws_cloudwatch_event_rule" "s3_object_created" {
   })
 }
 
-resource "aws_cloudwatch_event_target" "trigger_glue_job" {
+resource "aws_cloudwatch_event_target" "trigger_glue_workflow" {
   rule = aws_cloudwatch_event_rule.s3_object_created.name
-  arn  = aws_glue_job.s3_copy.arn
-  role_arn = aws_iam_role.glue_role.arn
+  arn  = aws_glue_workflow.s3_copy_workflow.arn
 
-  input_transformer {
-    input_paths = {
-      bucket = "$.detail.bucket.name"
-      key    = "$.detail.object.key"
-    }
-
-    input_template = <<EOF
-{
-  "--SOURCE_BUCKET": "<bucket>",
-  "--SOURCE_KEY": "<key>",
-  "--SOURCE_PREFIX": "${var.source_bucket_prefix}",
-  "--DEST_BUCKET": "${var.destination_bucket}",
-  "--DEST_PREFIX": "${var.destination_bucket_prefix}"
-}
-EOF
-  }
+  role_arn = aws_iam_role.eventbridge_invoke_glue_role.arn
 }
