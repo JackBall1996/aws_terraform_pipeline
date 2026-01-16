@@ -8,6 +8,11 @@ resource "aws_cloudwatch_event_rule" "s3_object_created" {
       bucket = {
         name = [var.source_bucket]
       }
+      object = {
+        key = [{
+          prefix = var.source_bucket_prefix
+        }]
+      }
     }
   })
 }
