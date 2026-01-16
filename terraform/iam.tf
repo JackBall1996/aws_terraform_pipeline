@@ -47,7 +47,7 @@ resource "aws_iam_role_policy" "glue_policy" {
 }
 
 resource "aws_iam_role" "eventbridge_invoke_glue_role" {
-  name = "${var.name_prefix}-eventbridge-glue-role"
+  name = "jackball-eventbridge-glue-role"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
