@@ -4,13 +4,12 @@ from awsglue.utils import getResolvedOptions
 
 args = getResolvedOptions(
     sys.argv,
-    ["SOURCE_BUCKET", "SOURCE_KEY", "SOURCE_PREFIX", "DEST_BUCKET", "DEST_PREFIX"]
+    ["SOURCE_BUCKET", "SOURCE_PREFIX", "DEST_BUCKET", "DEST_PREFIX"]
 )
 
 s3 = boto3.client("s3")
 
 source_bucket = args["SOURCE_BUCKET"]
-source_key    = args["SOURCE_KEY"]
 source_prefix = args["SOURCE_PREFIX"]
 dest_bucket   = args["DEST_BUCKET"]
 dest_prefix   = args["DEST_PREFIX"]

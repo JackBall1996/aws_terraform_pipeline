@@ -24,7 +24,8 @@ resource "aws_glue_job" "s3_copy" {
     "--job-language"                     = "python"
 
     "--SOURCE_BUCKET" = var.source_bucket
+    "--SOURCE_PREFIX" = var.source_bucket_prefix
     "--DEST_BUCKET"   = var.destination_bucket
-    "--SOURCE_PREFIX" = var.source_prefix
+    "--DEST_PREFIX"   = var.destination_bucket_prefix
   }
 }
