@@ -10,7 +10,7 @@ resource "aws_cloudwatch_event_rule" "s3_object_created" {
       }
       object = {
         key = [{
-          prefix = var.source_bucket_prefix
+            prefix = "${var.source_bucket_prefix}/"
         }]
       }
     }

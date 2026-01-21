@@ -8,9 +8,9 @@ args = getResolvedOptions(
 )
 
 SOURCE_BUCKET = args["SOURCE_BUCKET"]
-SOURCE_PREFIX = args["SOURCE_PREFIX"].lstrip("/")
+SOURCE_PREFIX = args["SOURCE_PREFIX"]
 DEST_BUCKET   = args["DEST_BUCKET"]
-DEST_PREFIX   = args["DEST_PREFIX"].rstrip("/") + "/"
+DEST_PREFIX   = args["DEST_PREFIX"]
 
 print(f"SOURCE_BUCKET={SOURCE_BUCKET}")
 print(f"SOURCE_PREFIX={SOURCE_PREFIX}")
