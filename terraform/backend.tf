@@ -3,7 +3,7 @@ terraform {
     bucket         = "jackball-bucket/tf"
     key            = "jackball-s3-copy-lambda/terraform.tfstate"
     region         = "eu-west-2"
-    dynamodb_table = "terraform-locks"
+    dynamodb_table = "terraform-locks-jackball"
     encrypt        = true
   }
 }

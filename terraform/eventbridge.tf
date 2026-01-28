@@ -1,5 +1,5 @@
 resource "aws_cloudwatch_event_rule" "s3_object_created" {
-  name = "jackball-trigger-glue-on-s3-upload"
+  name = "jackball-trigger-lambda-on-s3-upload"
 
   event_pattern = jsonencode({
     source = ["aws.s3"]
