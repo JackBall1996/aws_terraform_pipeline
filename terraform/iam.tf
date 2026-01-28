@@ -69,7 +69,8 @@ resource "aws_iam_role_policy" "eventbridge_invoke_glue_policy" {
     Statement = [{
       Effect = "Allow"
       Action = [
-        "glue:StartWorkflowRun"
+        "glue:StartWorkflowRun",
+        "glue:NotifyEvent"
       ]
       Resource = aws_glue_workflow.s3_copy_workflow.arn
     }]

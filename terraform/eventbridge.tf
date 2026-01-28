@@ -17,9 +17,15 @@ resource "aws_cloudwatch_event_rule" "s3_object_created" {
   })
 }
 
-resource "aws_cloudwatch_event_target" "trigger_glue_workflow" {
+resource "aws_cloudwatch_event_target" "lambda_target" {
   rule = aws_cloudwatch_event_rule.s3_object_created.name
-  arn  = aws_glue_workflow.s3_copy_workflow.arn
+  arn  = aws_lambda_function.s3_copy.arn
+}
 
-  role_arn = aws_iam_role.eventbridge_invoke_glue_role.arn
+resource "aws_lambda_permission" "allow_eventbridge" {
+  statement_id  = "AllowEventBridgeInvoke"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.s3_copy.function_name
+  principal     = "events.amazonaws.com"
+  source_arn    = aws_cloudwatch_event_rule.s3_object_created.arn
 }

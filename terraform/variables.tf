@@ -25,7 +25,6 @@ variable "destination_bucket_prefix" {
   default     = ""
 }
 
-variable "glue_job_name" {
-  type        = string
-  description = "Name of the Glue job"
+variable "lambda_name" {
+  default = "jackball-s3-copy-lambda"
 }
