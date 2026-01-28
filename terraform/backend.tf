@@ -1,9 +1,9 @@
 terraform {
   backend "s3" {
     bucket         = "jackball-bucket/tf"
-    key            = "glue/s3-copy/terraform.tfstate"
+    key            = "jackball-s3-copy-lambda/terraform.tfstate"
     region         = "eu-west-2"
-    dynamodb_table = "terraform-locks"
+    dynamodb_table = "terraform-locks-jackball"
     encrypt        = true
   }
 }
