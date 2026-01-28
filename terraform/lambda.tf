@@ -7,7 +7,7 @@ data "archive_file" "lambda_zip" {
 resource "aws_lambda_function" "s3_copy" {
   function_name = var.lambda_name
   role          = aws_iam_role.lambda_role.arn
-  handler       = "s3_copy_lambda.handler"
+  handler       = "s3_copy_job.handler"
   runtime       = "python3.11"
 
   filename         = data.archive_file.lambda_zip.output_path
