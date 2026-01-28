@@ -31,16 +31,16 @@ resource "aws_iam_role_policy" "lambda_policy" {
       {
         Effect = "Allow"
         Action = [
-          "s3:GetObject"
+          "s3:GetObject",
+          "s3:PutObject",
+          "s3:ListBucket"
         ]
-        Resource = "arn:aws:s3:::${var.source_bucket}/*"
-      },
-      {
-        Effect = "Allow"
-        Action = [
-          "s3:PutObject"
+        Resource = [
+          "arn:aws:s3:::${var.source_bucket}",
+          "arn:aws:s3:::${var.source_bucket}/*",
+          "arn:aws:s3:::${var.destination_bucket}",
+          "arn:aws:s3:::${var.destination_bucket}/*"
         ]
-        Resource = "arn:aws:s3:::${var.destination_bucket}/*"
       }
     ]
   })
